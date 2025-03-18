@@ -45,11 +45,11 @@ pipeline {
 def build(){
     echo "Building of node application is satrting.."
     bat "npm install"
-    bat "npm install -g pm2"
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
+    bat "pm2 delete \"books-${environment}\""
     bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
