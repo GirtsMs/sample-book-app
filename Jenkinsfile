@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Deploy to DEV') {
             steps {
-                deploy("DEV", 1010) 
+                deploy("DEV", 1050) 
             }
         }
         stage('Tests on DEV') {
