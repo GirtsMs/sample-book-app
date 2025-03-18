@@ -11,44 +11,32 @@ pipeline {
         }
         stage('Deploy to DEV') {
             steps {
-                script{
-                    deploy("DEV", 1010)
-                }
+                deploy("DEV", 1010) 
             }
         }
         stage('Tests on DEV') {
             steps {
-                script{
-                    testing("DEV")
-                }
+                testing("DEV")
             }
         }
         stage('Deploy to STG') {
             steps {
-                script{
-                    deploy("STG", 2020)
-                }
+                deploy("STG", 2020)
             }
         }
         stage('Tests on STG') {
             steps {
-                script{
-                    testing("STG")
-                }
+                testing("STG")
             }
         }
         stage('Deploy to PRD') {
             steps {
-                script{
-                    deploy("PRD", 3030)
-                }
+                deploy("PRD", 3030)
             }
         }
         stage('Tests on PRD') {
             steps {
-                script{
-                    testing("PRD")
-                }
+                testing("PRD")
             }
         }
     }
@@ -57,7 +45,6 @@ pipeline {
 def build(){
     echo "Building of node application is satrting.."
     bat "npm install"
-    bat "npm install -g pm2"
 }
 
 def deploy(String environment, int port){
