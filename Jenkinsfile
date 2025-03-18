@@ -4,44 +4,65 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'Building of node application is starting...'
+                script{
+                    build()
+                }
             }
         }
         stage('Deploy to DEV') {
             steps {
-                deploy("DEV")
+                script{
+                    deploy("DEV", 1010)
+                }
             }
         }
         stage('Tests on DEV') {
             steps {
-                testing("DEV")
+                script{
+                    testing("DEV")
+                }
             }
         }
         stage('Deploy to STG') {
             steps {
-                deploy("STG")
+                script{
+                    deploy("STG", 2020)
+                }
             }
         }
         stage('Tests on STG') {
             steps {
-                testing("STG")
+                script{
+                    testing("STG")
+                }
             }
         }
         stage('Deploy to PRD') {
             steps {
-                deploy("PRD")
+                script{
+                    deploy("PRD", 3030)
+                }
             }
         }
         stage('Tests on PRD') {
             steps {
-                testing("PRD")
+                script{
+                    testing("PRD")
+                }
             }
         }
     }
 }
 
-def deploy(String environment){
+def build(){
+    echo "Building of node application is satrting.."
+    bat "ls"
+    bat "npm install"
+}
+
+def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
+    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def testing(String environment){
