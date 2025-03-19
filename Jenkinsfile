@@ -61,14 +61,16 @@ def build(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
-    git branch: 'main', url: 'https://github.com/GirtsMs/sample-book-app.git'
+    git branch: 'main', poll: false, url: 'https://github.com/GirtsMs/sample-book-app.git'
+    bat "npm install"
+    bat "npm install -g pm2"
     bat "pm2 delete \"books-${environment}\""
     bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def testing(String test_set, String environment){
     echo "Testing test set on ${environment} has started.."
-    git branch: 'main', url: 'https://github.com/GirtsMs/api-automation.git'
+    git branch: 'main', poll: false, url: 'https://github.com/GirtsMs/api-automation.git'
     bat "npm install"
     bat "npm run ${test_set} ${test_set}_${environment}"
 }
