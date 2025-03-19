@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
-        run: echo "Testing test set on DEV has started.."
+        run: echo "Testing BOOKS test set on DEV has started.."
 
   deploy_stg:
     runs-on: ubuntu-latest
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
-        run: echo "Testing test set on STG has started.."
+        run: echo "Testing BOOKS test set on STG has started.."
 
   deploy-prd:
     runs-on: ubuntu-latest
@@ -54,10 +54,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Print step name
         run: echo "Deployment to PRD has started.."
-        
+
   test-prd:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
-        run: echo "Testing test set on PRD has started.."
+        run: echo "Testing BOOKS test set on PRD has started.."
