@@ -67,4 +67,6 @@ def deploy(String environment, int port){
 
 def testing(String environment){
     echo "Testing test set on ${environment} has started.."
+    git branch: 'main', url: 'https://github.com/GirtsMs/api-automation.git'
+    bat "npm install"
 }
