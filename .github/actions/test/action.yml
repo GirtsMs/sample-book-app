@@ -15,10 +15,10 @@ runs:
         repository: "GirtsMs/api-automation"
     - name: Print step name
       run: echo "Testing ${{ inputs.test-suite}} test set on ${{ inputs.environment}} has started.."
-      shell: powershell
+      shell: cmd
     - name: Install all depentdencies
       run: npm install
-      shell: powershell
+      shell: cmd
     - name: Run API tests
       run: npm run ${{ inputs.test-suite}} ${{ inputs.test-suite}}_${{ inputs.environment}}
-      shell: powershell
+      shell: cmd
