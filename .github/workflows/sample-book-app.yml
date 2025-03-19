@@ -41,8 +41,14 @@ jobs:
     needs: [deploy-dev]
     steps:
       - uses: actions/checkout@v4
+        with:
+            repository: "GirtsMs/api-automation"
       - name: Print step name
         run: echo "Testing BOOKS test set on DEV has started.."
+      - name: Install all depentdencies
+        run: npm install
+      - name: Run API tests
+        run: npm run BOOKS BOOKS_DEV
 
   deploy-stg:
     runs-on: self-hosted
