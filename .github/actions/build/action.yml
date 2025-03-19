@@ -1,0 +1,11 @@
+name: "Build node application"
+description: "Compiste action to setup and build our node app"
+runs:
+  using: composite
+  steps:
+    - name: Print step name
+      run: echo "Building of node application is satrting.."
+      shell: cmd
+    - name: Install all depentdencies
+      run: npm install
+      shell: cmd
