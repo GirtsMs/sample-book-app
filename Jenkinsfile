@@ -19,7 +19,7 @@ pipeline {
         stage('Tests on DEV') {
             steps {
                 script{
-                    testing("DEV")
+                    testing("BOOKS", "DEV")
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         stage('Tests on STG') {
             steps {
                 script{
-                    testing("STG")
+                    testing("BOOKS", "STG")
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
         stage('Tests on PRD') {
             steps {
                 script{
-                    testing("PRD")
+                    testing("BOOKS", "PRD")
                 }
             }
         }
@@ -66,8 +66,9 @@ def deploy(String environment, int port){
     bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
-def testing(String environment){
+def testing(String test_set, String environment){
     echo "Testing test set on ${environment} has started.."
     git branch: 'main', url: 'https://github.com/GirtsMs/api-automation.git'
     bat "npm install"
+    bat "npm run ${test_set} ${test_set}_${environment}"
 }
