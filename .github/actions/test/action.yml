@@ -1,0 +1,24 @@
+name: "Deploy Node App"
+description: "Compiste action to deploy our node app using pm2"
+inputs: 
+  environment:
+    desctription: 'Environment where to execute tests against'
+    requried: true
+  test-suite:
+    desctription: 'Testing suite which needs to be executed'
+    default: 'BOOKS'
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: "GirtsMs/api-automation"
+    - name: Print step name
+      run: echo "Testing ${{ inputs.test-suite}} test set on ${{ inputs.environment}} has started.."
+      shell: powershell
+    - name: Install all depentdencies
+      run: npm install
+      shell: powershell
+    - name: Run API tests
+      run: npm run ${{ inputs.test-suite}} ${{ inputs.test-suite}}_${{ inputs.environment}}
+      shell: powershell

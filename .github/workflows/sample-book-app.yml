@@ -33,15 +33,10 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-dev]
     steps:
-      - uses: actions/checkout@v4
+      - uses: ./.github/actions/test
         with:
-            repository: "GirtsMs/api-automation"
-      - name: Print step name
-        run: echo "Testing BOOKS test set on DEV has started.."
-      - name: Install all depentdencies
-        run: npm install
-      - name: Run API tests
-        run: npm run BOOKS BOOKS_DEV
+          environment: 'DEV'
+          test-suite: 'BOOKS'
 
   deploy-stg:
     runs-on: self-hosted
@@ -57,9 +52,10 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-stg]
     steps:
-      - uses: actions/checkout@v4
-      - name: Print step name
-        run: echo "Testing BOOKS test set on STG has started.."
+      - uses: ./.github/actions/test
+        with:
+          environment: 'DEV'
+          test-suite: 'BOOKS'
 
   deploy-prd:
     runs-on: self-hosted
@@ -75,6 +71,7 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-prd]
     steps:
-      - uses: actions/checkout@v4
-      - name: Print step name
-        run: echo "Testing BOOKS test set on PRD has started.."
+      - uses: ./.github/actions/test
+        with:
+          environment: 'DEV'
+          test-suite: 'BOOKS'
