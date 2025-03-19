@@ -63,8 +63,8 @@ def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
     git branch: 'main', poll: false, url: 'https://github.com/GirtsMs/sample-book-app.git'
     bat "npm install"
-    bat "C:\Users\girts\AppData\Roaming\npm\pm2.cmd delete \"books-${environment}\""
-    bat "C:\Users\girts\AppData\Roaming\npm\pm2.cmd start -n \"books-${environment}\" index.js -- ${port}"
+    bat "pm2 delete \"books-${environment}\""
+    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def testing(String test_set, String environment){
