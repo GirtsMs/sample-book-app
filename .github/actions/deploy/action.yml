@@ -12,13 +12,13 @@ runs:
   steps:
     - name: Print step name
       run: echo "Deployment to ${{ inputs.environment}} has started.."
-      shell: cmd
+      shell: powershell
     - name: Install all depentdencies
       run: npm install
-      shell: cmd
+      shell: powershell
     - name: Delete existing pm2 service
       run: pm2 delete "${{ inputs.environment}}" || exit 0
-      shell: cmd
+      shell: powershell
     - name: Run sample-book-app pm2 service
       run: pm2 start -n "${{ inputs.environment}}" index.js -- ${{ inputs.port}}"
-      shell: cmd
+      shell: powershell
