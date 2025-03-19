@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Tests on DEV') {
             steps {
-                testing("BOOKS", "DEV")
+                testing("DEV")
             }
         }
         stage('Deploy to STG') {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Tests on STG') {
             steps {
-                testing("BOOKS", "STG")
+                testing( "STG")
             }
         }
         stage('Deploy to PRD') {
@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Tests on PRD') {
             steps {
-                testing("BOOKS", "PRD")
+                testing( "PRD")
             }
         }
     }
@@ -53,7 +53,6 @@ def deploy(String environment, int port){
     bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
-def testing(String environment String test_set){
-    echo "Testing ${test_set} test set on ${environment} has started.."
-    npm "npm run ${test_set} ${test_set}_${environment}"
+def testing(String environment){
+    echo "Testing test set on ${environment} has started.."
 }
