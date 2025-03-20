@@ -33,6 +33,9 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-dev]
     steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "GirtsMs/api-automation"
       - uses: ./.github/actions/test
         with:
           environment: 'DEV'
