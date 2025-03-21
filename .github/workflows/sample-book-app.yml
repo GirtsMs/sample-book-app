@@ -36,7 +36,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: "GirtsMs/api-automation"
-      - uses: ./.github/actions/test
+      - uses: actions/checout@v4
+        with: 
+          repository: 'GirtsMs/sample-book-app'
+          path: 'sample-book-app'
+          sparse-checkout: |
+            .github
+      - uses: ./sample-book-app/.github/actions/test
         with:
           environment: 'DEV'
           test-suite: 'BOOKS'
