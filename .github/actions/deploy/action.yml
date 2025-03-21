@@ -17,7 +17,7 @@ runs:
       run: npm install
       shell: cmd
     - name: Delete existing pm2 service
-      run: pm2 delete "${{ inputs.environment}}" || exit 0
+      run: RUNNER_TRACKING_ID="" && pm2 delete "${{ inputs.environment}}" || exit 0
       shell: cmd
     - name: Run sample-book-app pm2 service
       run: pm2 start -n "${{ inputs.environment}}" index.js -- ${{ inputs.port}}"
